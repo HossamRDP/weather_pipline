@@ -1,0 +1,250 @@
+{
+  "datasets": [
+    {
+      "name": "75325830",
+      "displayName": "weather_gold_summary",
+      "config": {
+        "version": "1.1",
+        "source": "dev_demo_catalog.weather_analytics.weather_gold_summary",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "ca80e7b5",
+      "displayName": "Weather Analytics",
+      "layout": [
+        {
+          "widget": {
+            "name": "average-temperature-by-city",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "75325830",
+                  "fields": [
+                    {
+                      "name": "city",
+                      "expression": "`city`"
+                    },
+                    {
+                      "name": "daily(forecast_date)",
+                      "expression": "DATE_TRUNC(\"DAY\", `forecast_date`)"
+                    },
+                    {
+                      "name": "avg_temperature_celsius",
+                      "expression": "`avg_temperature_celsius`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"font-size: 14px;\">Average Temperature by City</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(forecast_date)",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "avg_temperature_celsius",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "205d26b8",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "75325830",
+                  "fields": [
+                    {
+                      "name": "city",
+                      "expression": "`city`"
+                    },
+                    {
+                      "name": "daily(forecast_date)",
+                      "expression": "DATE_TRUNC(\"DAY\", `forecast_date`)"
+                    },
+                    {
+                      "name": "avg_humidity",
+                      "expression": "`avg_humidity`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"font-size:14px\">Average Humdity by City</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(forecast_date)",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "avg_humidity",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "a8bb79a7",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "75325830",
+                  "fields": [
+                    {
+                      "name": "city",
+                      "expression": "`city`"
+                    },
+                    {
+                      "name": "forecast_date",
+                      "expression": "`forecast_date`"
+                    },
+                    {
+                      "name": "most_frequent_weather_main",
+                      "expression": "`most_frequent_weather_main`"
+                    },
+                    {
+                      "name": "min_temperature_celsius",
+                      "expression": "`min_temperature_celsius`"
+                    },
+                    {
+                      "name": "max_temperature_celsius",
+                      "expression": "`max_temperature_celsius`"
+                    },
+                    {
+                      "name": "data_point_count",
+                      "expression": "`data_point_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "city"
+                  },
+                  {
+                    "fieldName": "forecast_date"
+                  },
+                  {
+                    "fieldName": "most_frequent_weather_main"
+                  },
+                  {
+                    "fieldName": "min_temperature_celsius"
+                  },
+                  {
+                    "fieldName": "max_temperature_celsius"
+                  },
+                  {
+                    "fieldName": "data_point_count"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
