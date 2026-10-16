@@ -1,0 +1,6 @@
+resources:  
+  dashboards:
+    weather_dashboard:
+      display_name: Weather Analytics
+      file_path: ../../src/dashboards/Dashboard.lvdash.json
+      warehouse_id: ${var.warehouse_id}

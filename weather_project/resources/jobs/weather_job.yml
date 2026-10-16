@@ -1,0 +1,39 @@
+resources:
+  jobs:
+    weather_pipeline:
+      name: weather_pipeline
+
+      email_notifications:
+        on_failure:
+          - hossam@dataplatforms.ca
+
+      schedule:
+        quartz_cron_expression: "0 0 8 * * ?"
+        timezone_id: America/Toronto
+        pause_status: UNPAUSED
+
+      tasks:
+        - task_key: weather_pipeline
+
+          notebook_task:
+            notebook_path: ../../src/notebooks/01_weather_pipeline.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              secret_name: ${var.secret_name}
+            source: WORKSPACE
+
+          max_retries: -1
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: true
+          environment_key: weather_pipeline_environment
+
+      queue:
+        enabled: true
+
+      environments:
+        - environment_key: weather_pipeline_environment
+          spec:
+            environment_version: "6"
+
+      performance_target: STANDARD

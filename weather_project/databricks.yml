@@ -1,0 +1,45 @@
+# This is a Declarative Automation Bundle definition for weather_project.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: weather_project
+  uuid: 410d09c4-ec4d-4399-a5d3-6de0c476d2a7
+
+include:
+  - resources/*.yml
+  - resources/**/**.yml
+  - src/*.yml
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+    default: dev_demo_catalog
+
+  schema:
+    description: The schema to use
+    default: weather_analytics
+  warehouse_id: 
+    default: /sql/1.0/warehouses/f3e1dee9383f718d
+  secret_name:
+    description: Unity Catalog secret name
+    default: openweather_api_key
+        
+targets:
+  dev:
+    mode: development
+    default: true
+
+    presets:
+      source_linked_deployment: false
+
+    workspace:
+      host:  https://dbc-42706e19-ccf1.cloud.databricks.com/
+
+    variables:
+      catalog: dev_demo_catalog
+      schema: weather_analytics
+      warehouse_id: f3e1dee9383f718d
+      
+
+    permissions:
+      - user_name: hossam@dataplatforms.ca
+        level: CAN_MANAGE
